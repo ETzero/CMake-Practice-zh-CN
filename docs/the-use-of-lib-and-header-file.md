@@ -139,7 +139,6 @@ ldd src/main
 > 这里需要把 /usr/lib/ 加入到 /etc/ld.so.conf 文件中。具体操作如下：
 >
 > ```bash
-> $ cd /etc/
 > $ vim /etc/ld.so.conf
 > include ld.so.conf.d/*.conf
 > /usr/lib/             # 添加这个
