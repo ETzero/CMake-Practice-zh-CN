@@ -8,4 +8,5 @@
 * [七、cmake 常用变量和常用环境变量](common-var)
 * [八、cmake 常用指令](common-directives)
 * [九、复杂的例子:模块的使用和自定义模块](module)
+* [十、cmake指令和变量汇总](cmake-command-variable)
 

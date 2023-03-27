@@ -135,6 +135,23 @@ ldd src/main
 
 可以清楚的看到 main 确实链接了共享库 libhello，而且链接的是动态库 libhello.so.1。
 
+> 在上一节中，libhello.so.1 是被安装到了 /usr/lib/ 下。如果该路径系统的动态库链接搜索路径，在链接时会找不到  hello.so.1。
+> 这个时候，可以把 /usr/lib/ 加入到系统链接路径中，在 /etc/ld.so.conf 文件中添加 `/usr/lib/` 。具体操作如下：
+>
+> ```bash
+> $ cd /etc/
+> $ cat >> ld.so.conf << EOF 
+> > /usr/lib/
+> > EOF
+> # 检查
+> $ cat ld.so.conf
+> include ld.so.conf.d/*.conf
+> /usr/lib/
+> # 生效
+> $ ldconfig
+> 
+
+
 那如何链接到静态库呢？
 
 方法很简单：
