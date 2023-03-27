@@ -3,7 +3,7 @@
 
 ## 指令
 
-### *PROJECT 指令*
+#### *PROJECT 指令*
 
 ```cmake
 PROJECT(projectname [CXX] [C] [Java])
@@ -11,7 +11,7 @@ PROJECT(projectname [CXX] [C] [Java])
 
 你可以用这个指令定义工程名称，并可指定工程支持的语言，支持的语言列表是可以忽略的，默认情况表示支持所有语言。
 
-### *SET指令*
+#### *SET指令*
 
 ```cmake
 SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
@@ -19,7 +19,7 @@ SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
 
 SET 指令可以用来显式的定义变量。
 
-### *MESSAGE 指令*
+#### *MESSAGE 指令*
 
 ```cmake
 MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] "message to display" ...) 
@@ -31,7 +31,7 @@ MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] "message to display" ...)
 2. `STATUS`，输出前缀为`--`的信息
 3. `FATAL_ERROR`，立即终止所有cmake过程
 
-### *ADD_EXECUTABLE 指令*
+#### *ADD_EXECUTABLE 指令*
 
 ```cmake
 ADD_EXECUTABLE(<name> [WIN32] [MACOSX_BUNDLE]
@@ -49,7 +49,7 @@ ADD_EXECUTABLE(hello ${SRC_LIST})
 
 定义了这个工程会生成一个文件名为 hello 的可执行文件，相关的源文件是 SRC_LIST 中定义的源文件列表， 本例中你也可以直接写成`ADD_EXECUTABLE(hello main.c)`。
 
-### *ADD_LIBRARY 指令*
+#### *ADD_LIBRARY 指令*
 
 ```cmake
 ADD_LIBRARY(libname [SHARED|STATIC|MODULE]
@@ -66,7 +66,7 @@ ADD_LIBRARY(libname [SHARED|STATIC|MODULE]
 2. **STATIC**，静态库
 3. **MODULE**，在使用 dyld 的系统有效，如果不支持 dyld，则被当作 SHARED 对待。
 
-### *ADD_SUBDIRECTORY 指令*
+#### *ADD_SUBDIRECTORY 指令*
 
 ```cmake
 ADD_SUBDIRECTORY(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
@@ -84,13 +84,13 @@ ADD_SUBDIRECTORY(src bin)
 
 定义了将 `src` 子目录加入工程，并指定编译输出(包含编译中间结果)路径为 `bin `目录。如果不进行 `bin` 目录的指定，那么编译结果(包括中间结果)都将存放在 `build/src` 目录(这个目录跟原有的 src 目录对应)，指定 `bin` 目录后，相当于在编译时将 src 重命名为 bin，所有的中间结果和目标二进制都将存放在 `bin` 目录。
 
-### *INSTALL 指令*
+#### *INSTALL 指令*
 
 INSTALL 指令用于定义安装规则，安装的内容可以包括目标二进制、动态库、静态库以及文件、目录、脚本等。
 
 INSTALL 指令包含了各种安装类型，详细请翻回[第四节、更好一点的Hello World](better-hello-world) 查看。
 
-### *SET_TARGET_PROPERTIES 指令*
+#### *SET_TARGET_PROPERTIES 指令*
 
 ```cmake
 SET_TARGET_PROPERTIES(target1 target2 ...
@@ -101,7 +101,7 @@ SET_TARGET_PROPERTIES(target1 target2 ...
 
 这条指令可以用来设置输出的名称，对于动态库，还可以用来指定动态库版本和 API 版本。
 
-### *GET_TARGET_PROPERTY 指令*
+#### *GET_TARGET_PROPERTY 指令*
 
 ```cmake
 GET_TARGET_PROPERTY(VAR target property)
@@ -116,7 +116,7 @@ MESSAGE(STATUS “This is the hello_static OUTPUT_NAME:” ${OUTPUT_VALUE})
 
 如果没有这个属性定义，则返回 NOTFOUND。
 
-### *INCLUDE_DIRECTORIES 指令*
+#### *INCLUDE_DIRECTORIES 指令*
 
 ```cmake
 INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...)
@@ -127,7 +127,7 @@ INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...)
 1. `CMAKE_INCLUDE_DIRECTORIES_BEFORE`，通过 SET 这个 cmake 变量为 on，可以将添加的头文件搜索路径放在已有路径的前面。
 2. 通过 `AFTER` 或者 `BEFORE` 参数，也可以控制是追加还是置前。
 
-### *LINK_DIRECTORIES 指令*
+#### *LINK_DIRECTORIES 指令*
 
 ```cmake
 LINK_DIRECTORIES(directory1 directory2 ...)
@@ -135,7 +135,7 @@ LINK_DIRECTORIES(directory1 directory2 ...)
 
 这个指令非常简单，添加非标准的共享库搜索路径，比如，在工程内部同时存在共享库和可执行二进制，在编译时就需要指定一下这些共享库的路径。
 
-### *TARGET_LINK_LIBRARIES 指令*
+#### *TARGET_LINK_LIBRARIES 指令*
 
 ```cmake
 TARGET_LINK_LIBRARIES(target library1
@@ -147,23 +147,23 @@ TARGET_LINK_LIBRARIES(target library1
 
 ## 变量
 
-### \<projectname\>_BINARY_DIR
+#### *\<projectname\>_BINARY_DIR*
 
 由 PROJECT 指令隐式定义的两个 cmake 变量之一，当使用 PROJECT 指令时就会定义。该变量表示编译目录的路径。
 
-### \<projectname\>_SOURCE_DIR
+#### *\<projectname\>_SOURCE_DIR*
 
 由 PROJECT 指令隐式定义的两个 cmake 变量之一，当使用 PROJECT 指令时就会定义。该变量表示源码工程目录的路径。
 
-### PROJECT_BINARY_DIR
+#### *PROJECT_BINARY_DIR*
 
 cmake 系统预定义的变量，与<projectname>_BINARY_DIR 一样，该变量表示编译目录的路径。
 
-### PROJECT_SOURCE_DIR
+#### *PROJECT_SOURCE_DIR*
 
 cmake 系统预定义的变量，与<projectname>_SOURCE_DIR 一样，该变量表示源码工程目录的路径。
 
-### EXECUTABLE_OUTPUT_PATH
+#### *EXECUTABLE_OUTPUT_PATH*
 
 指定最终的目标二进制（可执行文件）的位置。通过 SET 指令定义该变量，可指定最终生成的可执行文件的位置。（不包含编译生成的中间文件）
 
@@ -171,7 +171,7 @@ cmake 系统预定义的变量，与<projectname>_SOURCE_DIR 一样，该变量�
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 ```
 
-### LIBRARY_OUTPUT_PATH
+#### *LIBRARY_OUTPUT_PATH*
 
 指定最终的目标二进制（动、静态库文件）的位置。通过 SET 指令定义该变量，可指定最终生成的动态库或静态库文件的位置。（不包含编译生成的中间文件）
 
@@ -179,17 +179,17 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 ```
 
-### CMAKE_INSTALL_PREFIX
+#### *CMAKE_INSTALL_PREFIX*
 
 `CMAKE_INSTALL_PREFIX` 变量类似于 configure 脚本的 `--prefix`，常见的使用方法看起来是这个样子：`cmake -DCMAKE_INSTALL_PREFIX=/usr`。
 
-### CMAKE_INCLUDE_DIRECTORIES_BEFORE
+#### *CMAKE_INCLUDE_DIRECTORIES_BEFORE*
 
 通过 SET 这个 cmake 变量为 on，可以将添加的头文件搜索路径放在已有路径的前面。
 
 ## 环境变量
 
-### CMAKE_INCLUD_PATH 和 CMAKE_LIBRARY_PATH
+#### *CMAKE_INCLUD_PATH* 和 *CMAKE_LIBRARY_PATH*
 
 使用方法是要在 bash 中用 export 或者在 csh 中使用 set 命令设置或者 `CMAKE_INCLUDE_PATH=/home/include cmake ..`等方式。
 
