@@ -146,7 +146,7 @@ ldd src/main
 >
 > # 生效
 > $ ldconfig
-> 
+>
 
 
 那如何链接到静态库呢？
