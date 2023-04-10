@@ -196,6 +196,8 @@ ENDIF(HELLO_FOUND)
 
 `SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)`
 
+?> 注：先找到`XXX.cmake`模块再开始寻找头文件和库文件的逻辑关系。因此上面的这句需要写在ADD_SUBDIRECTORY(src)的前面
+
 ##### 三、使用自定义的 FindHELLO 模块构建工程
 
 仍然采用外部编译的方式，建立 `build 目录`，进入目录运行：
